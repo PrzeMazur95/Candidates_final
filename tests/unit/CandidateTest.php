@@ -65,4 +65,27 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
 
     }
 
+    public function test_if_we_can_check_if_properties_are_not_empty(){
+
+        $this->CandidateController->emptyInput('John', 'Doe', 25 , '2022-06-16', 'Admin');
+
+    }
+
+    public function test_if_we_can_clean_properties(){
+
+        $this->assertEquals($this->CandidateController->cleanInput('John    '),'John');
+
+    }
+
+    public function test_if_we_can_set_candidate(){
+
+        $this->CandidateController->addName('John','Doe');
+        $this->CandidateController->addDate('2022-16-07');
+        $this->CandidateController->addAge(25);
+        $this->CandidateController->addRole('Admin');
+        $this->CandidateController->addCandidate();
+        $this->CandidateModel->setCandidate('John Doe', '25', '2022-16-07', 'Admin');
+
+    }
+
 }

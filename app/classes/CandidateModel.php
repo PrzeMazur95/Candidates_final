@@ -3,9 +3,11 @@
 
 class CandidateModel extends Dbh{
 
-    public function getAllCandidates(){
+    private $db_Table = "Candidates";
 
-        $sql = "SELECT * FROM Candidates";
+    protected function getAllCandidates(){
+
+        $sql = "SELECT * FROM $this->db_Table";
         $stmt = $this->connect()->prepare($sql);
 
         if($stmt->execute([$sql])){
@@ -18,6 +20,26 @@ class CandidateModel extends Dbh{
 
             $stmt=null;
             return false;
+
+        }
+
+    }
+
+    protected function setCandidate($name, $age, $date, $role){
+
+        $sql = "INSERT INTO Candidates (name, age, application_date, role) VALUES (?,?,?,?)";
+
+        $stmt = $this->connect()->prepare($sql);
+    
+        if(!$stmt->execute(array($name, $age, $date, $role))){
+
+            $stmt=null;
+            return false;
+
+        }else{
+
+            $stmt=null;
+            return true;
 
         }
 

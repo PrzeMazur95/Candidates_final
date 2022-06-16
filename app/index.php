@@ -8,7 +8,7 @@
         <div class="card-body">
             <h5 class="card-title">Add</h5>
             <p class="card-text">Add new candidates</p>
-            <a href="add.php" class="btn btn-primary">Go !</a>
+            <a href="addCandidateForm.php" class="btn btn-primary">Go !</a>
         </div>
         </div>
     </div>
