@@ -51,4 +51,18 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
 
     }
 
+    public function test_if_we_can_ask_Db_to_find_All_Candidates_and_get_result(){
+
+        $this->CandidateModel->getAllCandidates();
+        $this->assertTrue($this->CandidateModel->getAllCandidates());
+
+    }
+
+    public function test_if_we_can_show_all_Candidates_to_user(){
+
+        $this->CandidateView->showAllCandidates();
+        $this->assertTrue($this->CandidateView->showAllCandidates());
+
+    }
+
 }

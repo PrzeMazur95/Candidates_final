@@ -35,4 +35,9 @@
             </div>
         </nav>
 
-        <?php require_once("autoloader.php"); ?>
+        <?php 
+        
+        require_once("autoloader.php");
+        session_start();
+        
+        ?>
