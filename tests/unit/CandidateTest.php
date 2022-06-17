@@ -112,4 +112,16 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
 
     }
 
+    public function test_if_we_can_delete_candidate(){
+
+        $this->CandidateController->deleteCandidate(1);
+
+    }
+
+    public function test_if_we_can_delete_candidate_from_db(){
+
+        $this->CandidateModel->delete(1);
+
+    }
+
 }
