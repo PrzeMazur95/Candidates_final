@@ -86,6 +86,26 @@ class CandidateModel extends Dbh{
 
     }
 
+    protected function delete($id){
+
+        $sql = "DELETE FROM $this->db_Table WHERE id = ?";
+    
+        $stmt = $this->connect()->prepare($sql);
+        
+        if(!$stmt->execute([$id])){
+    
+            $stmt=null;
+            return false;
+    
+        }else{
+    
+            $stmt=null;
+            return true;
+    
+        }
+
+    }
+
 }
 
 ?>

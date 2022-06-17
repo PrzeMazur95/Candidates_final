@@ -109,6 +109,29 @@ class CandidateController extends CandidateModel{
 
     }
 
+    public function deleteCandidate($id){
+
+        $this->addId($id);
+
+        $candidate = new CandidateView();
+        $candidateName = $candidate->showSpecificCandidate($this->id);
+
+        if(!$this->delete($this->id)){
+
+            $_SESSION['msg']="There is no user with that ID, or something went wrong with Db connection, please contact with admin!";
+            $_SESSION['msg_type']="danger";
+            header("location: show.php");
+
+        }else{
+
+            $_SESSION['msg']="You have succesfully deleted ".$candidateName[0]['name']."!";
+            $_SESSION['msg_type']="success";
+            header("location: show.php");
+
+        }
+
+    }
+
 }
 
 ?>
