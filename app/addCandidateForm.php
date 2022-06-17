@@ -27,13 +27,23 @@
                     <h2><label for="name">Last name</label></h2>
                     <input type="text" class="form-control text-center" name="lastname" placeholder="Doe" required>
                 </div>
-                <div class="form-group">
+                <div class="row">
+                <div class="form-group col-sm-6">
                     <h2><label for="name">Age</label></h2>
                     <input type="number" class="form-control text-center" name="age" placeholder="25" required>
                 </div>
-                <div class="form-group">
-                    <h3><label for="role">Role</label></h3>
-                    <textarea class="form-control text-center" name="role" rows="3" placeholder="Admin" required></textarea>
+                <div class="form-group col-sm-6">
+                    <h2><label for="role">Role</label></h2>
+                    <select class="form-select" name="role">
+                    <option value="0" selected>Please choose a role for this candidate</option>
+                    <?php 
+                    
+                    $options = new RoleView();
+                    $options->showAllRoles();
+
+                    ?>
+                    </select>
+                </div>
                 </div>
                 <div class="form-group">
                     <h4><label for="date">Date</label></h4>

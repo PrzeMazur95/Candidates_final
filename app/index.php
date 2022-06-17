@@ -21,6 +21,15 @@
         </div>
         </div>
     </div>
+    <div class="col-sm-4-8 mt-4 text-center">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Role</h5>
+            <p class="card-text">Add new Role</p>
+            <a href="addRoleForm.php" class="btn btn-primary">Go !</a>
+        </div>
+        </div>
+    </div>
     </div>
 </div>
 <!-- Page footer-->

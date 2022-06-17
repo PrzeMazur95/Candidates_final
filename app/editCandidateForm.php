@@ -69,13 +69,29 @@ if(isset($_GET['editCandidate'])){
                     <h2><label for="name">Last Name</label></h2>
                     <input type="text" class="form-control text-center" name="lastname" value="<?php echo $lastName ?>" placeholder="John" required>
                 </div>
-                <div class="form-group">
-                    <h2><label for="name">Age</label></h2>
+                <div class="row">
+                <div class="form-group col-sm-6">
+                <h2><label for="name">Age</label></h2>
                     <input type="number" class="form-control text-center" name="age" value="<?php echo $age ?>" placeholder="25" required>
                 </div>
-                <div class="form-group">
-                    <h3><label for="role">Role</label></h3>
-                    <textarea class="form-control text-center" name="role" rows="3" value="<?php echo $specificCandidate[0]['role']; ?>" placeholder="Admin" required><?php echo $role ?></textarea>
+                <?php 
+                
+                $roles = new RoleView(); 
+                $actual_role = $roles->showSpecificRole($role);
+                $actual_role_name = $actual_role[0]['name'];
+                
+                ?>
+                <div class="form-group col-sm-6">
+                    <h2><label for="role">Role</label></h2>
+                    <select class="form-select" name="role">
+                    <option value="<?php echo $role ?>" selected><?php echo $actual_role_name;  ?></option>
+                    <?php 
+                    
+                    $roles->showAllRoles();
+
+                    ?>
+                    </select>
+                </div>
                 </div>
                 <div class="form-group">
                     <h4><label for="date">Date</label></h4>
