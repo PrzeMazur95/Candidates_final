@@ -88,4 +88,28 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
 
     }
 
+    public function test_if_we_can_show_specific_candidate(){
+
+        $this->CandidateView->showSpecificCandidate(3);
+        
+    }
+
+    public function test_if_we_can_get_specific_candidate_from_db(){
+
+        $this->CandidateModel->getCandidate(3);
+        
+    }
+
+    public function test_if_we_can_update_candidate_informations(){
+
+        $this->CandidateController->updateCandidate(3, 'Jane', 'Fox', 45, 'Moderator', '2024-16-08');
+
+    }
+
+    public function test_if_we_can_update_user_informations_in_db(){
+
+        $this->CandidateModel->update(3, 'Jane', 'Fox', 45, 'Moderator', '2024-16-08');
+
+    }
+
 }
