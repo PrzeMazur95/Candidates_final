@@ -4,6 +4,9 @@ require 'app/classes/Dbh.php';
 require 'app/classes/CandidateModel.php';
 require 'app/classes/CandidateView.php';
 require 'app/classes/CandidateController.php';
+require 'app/classes/RoleModel.php';
+require 'app/classes/RoleView.php';
+require 'app/classes/RoleController.php';
 
 class CandidateTest extends \PHPUnit\Framework\TestCase{
 
@@ -11,6 +14,9 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
     public $CandidateController;
     public $CandidateView;
     public $CandidateModel;
+    public $RoleController;
+    public $RoleView;
+    public $RoleModel;
 
     protected function setUp(): void {
 
@@ -18,6 +24,9 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
         $this->CandidateController = new CandidateController();
         $this->CandidateView = new CandidateView();
         $this->CandidateModel= new CandidateModel();
+        $this->RoleController= new RoleController();
+        $this->RoleView = new RoleView();
+        $this->RoleModel= new RoleModel();
 
     }
 
@@ -123,5 +132,86 @@ class CandidateTest extends \PHPUnit\Framework\TestCase{
         $this->CandidateModel->delete(1);
 
     }
+
+    public function test_if_we_can_instantiate_RoleModel(){
+
+        $this->assertInstanceOf("CandidateModel",$this->CandidateModel);
+
+    }
+
+    public function test_if_we_can_instantiate_RoleController(){
+
+        $this->assertInstanceOf("CandidateController",$this->CandidateController);
+
+    }
+
+    public function test_if_we_can_instantiate_RoleView(){
+
+        $this->assertInstanceOf("CandidateView",$this->CandidateView);
+
+    }
+
+    public function test_if_we_can_ask_db_to_show_all_Roles(){
+
+        $this->RoleModel->getAllRoles();
+        $this->assertTrue($this->RoleModel->getAllRoles());
+
+    }
+
+    public function test_if_we_can_set_new_role_in_db(){
+
+        $this->RoleModel->setRole('Administrator');
+
+    }
+
+    public function test_if_we_can_set_get_specifc_role_from_db(){
+
+        $this->RoleModel->getRole(3);
+
+    }
+
+    public function test_if_we_can_set_show_all_roles_to_user(){
+
+        $this->RoleView->showAllRoles();
+
+    }
+
+    public function test_if_we_can_set_show_specific_role_to_user(){
+
+        $this->RoleView->showSpecificRole(2);
+
+    }
+
+    public function test_if_we_can_clean_properties_in_RoleView(){
+
+        $this->RoleView->cleanInput('       Admin');
+
+    }
+
+    public function test_if_we_can_check_empty_inputs_in_RoleController(){
+
+        $this->RoleController->emptyInput('Admin');
+
+    }
+
+    public function test_if_we_can_clear_inputs_in_RoleController(){
+
+        $this->RoleController->cleanInput();
+
+    }
+
+    public function test_if_we_can_set_name_of_role_in_RoleController(){
+
+        $this->RoleController->addName('Admin');
+
+    }
+
+    public function test_if_user_can_set_new_role_in_RoleController(){
+
+        $this->RoleController->addRole('Admin');
+
+    }
+
+    
 
 }
