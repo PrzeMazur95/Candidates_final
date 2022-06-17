@@ -19,7 +19,17 @@ if(isset($_POST['submit'])){
 
         if(is_int($age) || $age>0){
 
-            $candidate->updateCandidate($id, $first_name, $last_name, $age, $role, $date);
+            if($role<=0){
+
+                $_SESSION['msg']="You have to choose a role!";
+                $_SESSION['msg_type']="danger";
+                header("location: editCandidateForm.php");
+
+            }else{
+
+                $candidate->updateCandidate($id, $first_name, $last_name, $age, $role, $date);
+
+            }
 
         } else {
 

@@ -18,7 +18,19 @@ if(isset($_POST['submit'])){
 
         if(is_int($age) || $age>0){
 
-            $candidate->addCandidate($first_name, $last_name, $age, $date, $role);
+            if($role<=0){
+
+                $_SESSION['msg']="You have to choose a role!";
+                $_SESSION['msg_type']="danger";
+                header("location: addCandidateForm.php");
+
+            }else{
+
+                $candidate->addCandidate($first_name, $last_name, $age, $date, $role);
+
+            }
+
+
 
         } else {
 
