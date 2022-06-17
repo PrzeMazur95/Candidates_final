@@ -45,6 +45,47 @@ class CandidateModel extends Dbh{
 
     }
 
+    protected function getCandidate($id){
+
+        $sql = "SELECT * FROM $this->db_Table WHERE id = ? LIMIT 1";
+        $stmt = $this->connect()->prepare($sql);
+
+        if($stmt->execute([$id])){
+
+            $result = $stmt->fetchAll();
+            $stmt=null;
+            return $result;
+
+        } else {
+
+            $stmt=null;
+            return false;
+
+        }
+
+    }
+
+    protected function update($id, $name, $age, $date, $role){
+
+        $sql = "UPDATE $this->db_Table SET name = ?, age = ?, application_date = ?, role = ? WHERE id = ?";
+    
+        $stmt = $this->connect()->prepare($sql);
+        
+        if(!$stmt->execute(array($name, $age, $date, $role, $id))){
+    
+            $stmt=null;
+            return false;
+    
+        }else{
+    
+            $stmt=null;
+            return true;
+    
+        }
+    
+
+    }
+
 }
 
 ?>

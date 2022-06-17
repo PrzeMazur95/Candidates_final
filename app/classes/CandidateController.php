@@ -7,6 +7,7 @@ class CandidateController extends CandidateModel{
     private $age;
     private $date;
     private $role;
+    private $id;
     
     public function addName($firstname, $lastname){
 
@@ -29,6 +30,11 @@ class CandidateController extends CandidateModel{
     public function addRole($role){
 
         $this->role=$this->cleanInput($role);
+    
+    }
+    public function addId($id){
+
+        $this->id=$this->cleanInput($id);
     
     }
 
@@ -55,7 +61,7 @@ class CandidateController extends CandidateModel{
 
     }
 
-    function emptyInput($firstname, $lastname, $age, $date, $role){
+    public function emptyInput($firstname, $lastname, $age, $date, $role){
 
         if(empty($firstname) || empty($lastname) || empty($age) || empty($date) || empty($role)){
 
@@ -69,7 +75,7 @@ class CandidateController extends CandidateModel{
         
     }
 
-    function cleanInput($input){
+    private function cleanInput($input){
 
         $input = trim($input);
         $input = stripslashes($input);
@@ -77,6 +83,30 @@ class CandidateController extends CandidateModel{
 
         return $input;
         
+    }
+
+    public function updateCandidate($id, $first_name, $last_name, $age, $role, $date){
+
+        $this->addId($id);
+        $this->addName($first_name, $last_name);
+        $this->addAge($age);
+        $this->addDate($date);
+        $this->addRole($role);
+
+        if(!$this->update($this->id, $this->name, $this->age, $this->date, $this->role)){
+
+            $_SESSION['msg']="Something went wrong with Db connection, please contact with admin!";
+            $_SESSION['msg_type']="danger";
+            header("location: editCandidateForm.php?editCandidate&id=$this->id");
+
+        } else {
+
+            $_SESSION['msg']="You have sucesfully updated this Candidate!";
+            $_SESSION['msg_type']="success";
+            header("location: editCandidateForm.php?editCandidate&id=$this->id");
+
+        }
+
     }
 
 }
